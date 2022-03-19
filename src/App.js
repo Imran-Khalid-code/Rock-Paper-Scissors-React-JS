@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { Container, Button, Card } from 'react-bootstrap';
+
 const App = () => {
 	const [userChoice, setUserChoice] = useState(null);
 	const [compChoice, setCompChoice] = useState(null);
@@ -12,8 +17,20 @@ const App = () => {
 
 	const compScore = () => {
 		const random = choices[Math.floor(Math.random() * choices.length)];
+		//setTimeout(() => {
 		setCompChoice(random);
+		//}, 3000);
 	};
+
+	function clearAll() {
+		console.log('outside if statement');
+		if (compChoice.length > 0) {
+			console.log('inside if statement');
+			compChoice = '';
+			userChoice = '';
+			result = '';
+		}
+	}
 
 	useEffect(() => {
 		{
@@ -39,22 +56,42 @@ const App = () => {
 
 	return (
 		<div>
-			<h1>User Choice : {userChoice} </h1>
-			<h1>Computer Choice: {compChoice} </h1>
-			<h1>Result:{result}</h1>
-
-			{/* <button onClick={() => handleClick('rock')}>Rock</button>
-			<button onClick={() => handleClick('paper')}>Paper</button>
-			<button onClick={() => handleClick('scissors')}>Scissors</button> */}
-			{choices.map((choice, index) => (
-				<button key={index} onClick={() => handleClick(choice)}>
-					{choice}
-				</button>
-			))}
+			<Container>
+				<Card className="mb-3" style={{ color: 'black', textAlign: 'center' }}>
+					<Card Img src="https://picsum.photos/200/100" />
+					<Card.Body>
+						<Card.Title
+							style={{ color: 'red', fontWeight: 'bold', fontSize: '50px' }}
+						>
+							Rock Paper Scissors
+						</Card.Title>
+						<Card.Text>
+							<h1>User Choice : {userChoice} </h1>
+							<h1>Computer Choice: {compChoice} </h1>
+							<h1>Result:{result}</h1>
+							{choices.map((choice, index) => (
+								<Button
+									type="button"
+									className="btn btn-success"
+									key={index}
+									onClick={() => handleClick(choice)}
+								>
+									{choice}
+								</Button>
+							))}
+							<Button
+								type="button"
+								className="btn btn-primary"
+								onClick={() => clearAll}
+							>
+								Clear
+							</Button>
+						</Card.Text>
+					</Card.Body>
+				</Card>
+			</Container>
 		</div>
 	);
 };
 
 export default App;
-
-//extension - add timeout for response.
