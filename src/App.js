@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Container, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 const App = () => {
 	const [userChoice, setUserChoice] = useState(null);
@@ -69,23 +69,29 @@ const App = () => {
 							<h1>User Choice : {userChoice} </h1>
 							<h1>Computer Choice: {compChoice} </h1>
 							<h1>Result:{result}</h1>
-							{choices.map((choice, index) => (
-								<Button
-									type="button"
-									className="btn btn-success"
-									key={index}
-									onClick={() => handleClick(choice)}
-								>
-									{choice}
-								</Button>
-							))}
-							<Button
-								type="button"
-								className="btn btn-primary"
-								onClick={() => clearAll}
-							>
-								Clear
-							</Button>
+
+							<Row>
+								<Col className="col-md-12 d-flex justify-content-around">
+									{choices.map((choice, index) => (
+										<Button
+											type="button"
+											className="btn btn-success"
+											key={index}
+											onClick={() => handleClick(choice)}
+										>
+											{choice}
+										</Button>
+									))}
+
+									<Button
+										type="button"
+										className="btn btn-primary"
+										onClick={() => clearAll}
+									>
+										Clear
+									</Button>
+								</Col>
+							</Row>
 						</Card.Text>
 					</Card.Body>
 				</Card>
