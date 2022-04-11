@@ -22,16 +22,6 @@ const App = () => {
 		//}, 3000);
 	};
 
-	function clearAll() {
-		console.log('outside if statement');
-		if (compChoice.length > 0) {
-			console.log('inside if statement');
-			compChoice = '';
-			userChoice = '';
-			result = '';
-		}
-	}
-
 	useEffect(() => {
 		{
 			switch (userChoice + compChoice) {
@@ -58,7 +48,7 @@ const App = () => {
 		<div>
 			<Container>
 				<Card className="mb-3" style={{ color: 'black', textAlign: 'center' }}>
-					<Card Img src="https://picsum.photos/200/100" />
+					<Card img src="https://picsum.photos/200/100" />
 					<Card.Body>
 						<Card.Title
 							style={{ color: 'red', fontWeight: 'bold', fontSize: '50px' }}
@@ -66,33 +56,27 @@ const App = () => {
 							Rock Paper Scissors
 						</Card.Title>
 						<Card.Text>
-							<h1>User Choice : {userChoice} </h1>
-							<h1>Computer Choice: {compChoice} </h1>
-							<h1>Result:{result}</h1>
+							<div>
+								<h1>User Choice : {userChoice} </h1>
+								<h1>Computer Choice: {compChoice} </h1>
+								<h1>Result: {result} </h1>
+							</div>
+						</Card.Text>
 
-							<Row>
-								<Col className="col-md-12 d-flex justify-content-around">
-									{choices.map((choice, index) => (
-										<Button
-											type="button"
-											className="btn btn-success"
-											key={index}
-											onClick={() => handleClick(choice)}
-										>
-											{choice}
-										</Button>
-									))}
-
+						<Row>
+							<Col className="col-md-12 d-flex justify-content-around">
+								{choices.map((choice, index) => (
 									<Button
 										type="button"
-										className="btn btn-primary"
-										onClick={() => clearAll}
+										className="btn btn-success"
+										key={index}
+										onClick={() => handleClick(choice)}
 									>
-										Clear
+										{choice}
 									</Button>
-								</Col>
-							</Row>
-						</Card.Text>
+								))}
+							</Col>
+						</Row>
 					</Card.Body>
 				</Card>
 			</Container>
